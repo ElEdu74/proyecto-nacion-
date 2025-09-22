@@ -1,0 +1,99 @@
+<html>
+
+<head>
+<title>SIRAEF - Dirección Planificación y Control Judicil</title>
+<style>
+	a:link	  {font-size:11pt font-family:verdana; color:#0B2EA8; text-decoration: none}
+	a:visited {font-size:11pt font-family:verdana; color:#0B2EA8; text-decoration: none}
+	a:active  {font-size:11pt font-family:verdana; color:#0B2EA8; text-decoration: none}
+	a:hover   {font-size:11pt font-family:verdana; color:#7794F7; text-decoration: none}
+	body      {margin-top: 0}
+</style>
+
+<link href="fuente.css" rel="stylesheet" type="text/css">
+
+<script language="javascript">
+window.status = "SIRAEF - Módulo de Consulta - Usuario: MARCHESE, EDUARDO DAVID - Id. Perfil: 11"
+
+var ua = window.navigator.userAgent;
+var msie = false;
+var fireFox = false;
+if (ua.indexOf ( "MSIE " ) > 0)
+	msie = true;
+
+if (ua.toLowerCase().indexOf ( "firefox" ) > 0)
+	fireFox = true;
+
+function imprimir()
+{
+
+	if ( msie)
+	{
+		panel.focus()
+		print();
+	}
+	else
+	{
+		var printPantalla = document.getElementById('panel'); 
+
+		if (fireFox)
+		{
+			printPantalla.focus(); 
+            printPantalla.contentWindow.print();
+		}
+		else
+		{
+			try 
+			{
+			    printPantalla.contentWindow.document.execCommand('print', true, null);
+			} 
+			catch(e) 
+			{
+				window.alert("Hay problemas con la impresión para el Browser que está utilizando.");
+			}
+		}
+	}
+}
+
+function salir()
+{
+	window.open('/atenea/cerrar_session.asp?trabajar=3', '_blank', 'toolbar=0,location=0,menubar=0,status=0,resizable=0,width=200,height=200,top=100,left=100');
+	window.close();
+}
+</script>
+</head>
+
+
+<body style="MARGIN-TOP: 0px" onmouseover="window.status='SIRAEF - Módulo de Consulta - Usuario: MARCHESE, EDUARDO DAVID - Id. Perfil: 11';" onunload="javascript:salir();">
+
+
+
+
+<table border="0" width="970" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50%" valign="center" align="left">
+	  <img src="/atenea/siraef/emision/images/logoDVDSJU.jpg" height="65" title="Div. Desarrollo de Sistemas Jurídicos">
+    </td>
+    <td width="50%" valign="center" align="right">
+		<IMG alt="Sistema de Radicación de Ejecuciones Fiscales" height=71 src="/atenea/siraef/emision/images/logo_sis.gif" style="HEIGHT: 48px; WIDTH: 256px" width=284 >
+		<br>
+		<span style="font-family: verdana; font-size: 7pt">Version:4.0</span>
+    </td>
+  </tr>
+</table>
+
+
+
+<SCRIPT language=JavaScript src="menu_cons.js" type=text/javascript></SCRIPT>
+<SCRIPT language=JavaScript src="gen_menu.js" type=text/javascript></SCRIPT>
+<iframe id="panel" align="top" border="0" bordercolor="#000000" frameborder="no" height="85%" name="panel" noresize scrolling="auto" width="985" src="Consulta_Juicio_Num.asp" style="margin-top: 30"></iframe>
+
+
+<script language="javascript">
+	window.open('/atenea/siraef/novedades.asp?sistema=SIRAEF&modulo=CONSULTA&perfil=', 'novedades');
+</script>
+
+
+</body>
+</html>
+
