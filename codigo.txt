@@ -1,0 +1,51 @@
+// ... (código existente)
+
+function executeAutomation() {
+    console.log('Iniciando automatización...');
+    
+    // 1. Obtener una referencia al iframe
+    const panelIframe = document.getElementById('panel');
+
+    // 2. Verificar si el iframe existe y si su contenido está cargado
+    if (!panelIframe || !panelIframe.contentDocument) {
+        console.error('❌ No se pudo acceder al contenido del iframe.');
+        alert('No se pudo acceder al contenido del iframe. Asegúrate de que la página se haya cargado completamente.');
+        return;
+    }
+    
+    // 3. Usar el documento del iframe para buscar los campos
+    const iframeDocument = panelIframe.contentDocument;
+
+    const numeroJuicioField = iframeDocument.querySelector('input[name="juicio"]');
+    const añoField = iframeDocument.querySelector('input[name="anio"]');
+    const buscarButton = iframeDocument.querySelector('input[name="buscar"]') || 
+                         iframeDocument.querySelector('button[name="buscar"]') ||
+                         iframeDocument.querySelector('[name="buscar"]');
+    
+    // ... (El resto del código de la función sigue igual,
+    //      pero ahora usa las variables numeroJuicioField, añoField y buscarButton
+    //      que fueron encontradas dentro del iframe)
+    
+    if (numeroJuicioField && añoField && buscarButton) {
+        console.log('✅ Todos los campos encontrados dentro del iframe, completando formulario...');
+        
+        // Limpiar y completar campos
+        numeroJuicioField.value = '556402';
+        añoField.value = '2025';
+        
+        // Disparar eventos
+        numeroJuicioField.dispatchEvent(new Event('input', { bubbles: true }));
+        añoField.dispatchEvent(new Event('input', { bubbles: true }));
+
+        setTimeout(() => {
+            console.log('🔍 Ejecutando búsqueda...');
+            buscarButton.click();
+        }, 800);
+    } else {
+        console.log('❌ No se encontraron todos los campos necesarios dentro del iframe.');
+        alert('No se pudieron encontrar todos los campos necesarios.');
+        console.log({ numeroJuicioField, añoField, buscarButton });
+    }
+}
+
+// ... (El resto del código de la extensión)
